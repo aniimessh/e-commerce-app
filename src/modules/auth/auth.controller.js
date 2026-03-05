@@ -90,12 +90,13 @@ const loginUser = async (req, res) => {
       },
     );
 
-    res.cookie("authToken", token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "lax",
-      maxAge: 7 * 24 * 60 * 60 * 1000,
-    });
+    // Changed to Breaer Token
+    // res.cookie("authToken", token, {
+    //   httpOnly: true,
+    //   secure: process.env.NODE_ENV === "production",
+    //   sameSite: "lax",
+    //   maxAge: 7 * 24 * 60 * 60 * 1000,
+    // });
 
     const data = {
       _id: user._id,
@@ -110,6 +111,7 @@ const loginUser = async (req, res) => {
     return res.status(200).json({
       success: true,
       message: "Login Succesfull",
+      token,
       data,
     });
   } catch (error) {
